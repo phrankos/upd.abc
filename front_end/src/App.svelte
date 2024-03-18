@@ -83,17 +83,24 @@ May you become less bored by reading the board named Bord :D
   };
 
   let colors = ["#9b74ffcb", "#74fffdcb"];
+  let editColors = ["#1f6299", "#991f3e"];
+  let editColor: string = editColors[0];
   let color: string = colors[0];
+  let editState: string = "Edit";
   const editText = async () => {
     if (isEditable) {
       isEditable = !isEditable;
       color = colors[0];
+      editColor = editColors[0];
+      editState = "Edit";
       readMsg();
       startReader();
     }
     else {
       isEditable = !isEditable;
       color = colors[1];
+      editColor = editColors[1];
+      editState = "Cancel";
       stopReader();
     }
   };
@@ -121,7 +128,7 @@ May you become less bored by reading the board named Bord :D
   <textarea style="border-color: {color};" maxlength="1500" readonly={!isEditable} spellcheck=false on:click|once={readMsg} bind:value={msg}></textarea>
   <button id="connectWallet" on:click={connectWallet}>Connect Wallet</button>
   <button id="post" on:click={submitMsg}>Post</button>
-  <button id="edit" on:click={editText}>Edit</button>
+  <button id="edit" style="background-color: {editColor};" on:click={editText}>{editState}</button>
   <div id="cont">
     <span id="numSubmissions">Number of Submissions: {numSubmissions}</span>
     <span id="currPrice">Current Price: {displayPrice} ETH</span>
