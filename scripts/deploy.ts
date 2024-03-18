@@ -1,10 +1,10 @@
 import { ethers } from "hardhat";
 
 async function main() {
-  const lock = await ethers.deployContract("DataSaver");
-  await lock.waitForDeployment();
+  const bord = await ethers.deployContract("Bord");
+  await bord.waitForDeployment();
   console.log(
-    ` deployed to ${lock.target}`
+    ` deployed to ${bord.target}`
   );
 }
 
